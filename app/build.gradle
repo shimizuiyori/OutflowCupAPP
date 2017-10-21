@@ -4,6 +4,9 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86"
+        }
         applicationId "com.china_tanyo.outflowcupapp"
         minSdkVersion 15
         targetSdkVersion 26
@@ -17,6 +20,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        armv7 {
+            ndk {
+                abiFilters "armeabi-v7a", ""
+            }
+        }
+        x86 {
+            ndk {
+                abiFilters "x86", ""
+            }
+        }
+    }
 }
 
 dependencies {
@@ -26,5 +41,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'org.xwalk:xwalk_core_library:19.49.514.5'
     testCompile 'junit:junit:4.12'
 }
